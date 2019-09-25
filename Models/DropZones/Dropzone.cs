@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DropZones
+namespace Models.Dropzones
 {
-    [Table("[DropZone].[DropZones]")]
-    public class DropZone
+    [Table("[Dropzone].[Dropzones]")]
+    public class Dropzone
     {
         public int Id { get; set; }
         public string Name { get; set; }
