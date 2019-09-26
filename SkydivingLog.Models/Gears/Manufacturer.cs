@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Gears
+namespace SkydivingLog.Models.Gears
 {
     [Table("[Gear].[Manufacturers]")]
     public class Manufacturer

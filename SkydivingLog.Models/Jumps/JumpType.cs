@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Dropzones
+namespace SkydivingLog.Models.Jumps
 {
-    [Table("[Dropzone].[Dropzones]")]
-    public class Dropzone
+    [Table("[Jump].[JumpTypes]")]
+    public class JumpType
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string CountryCode { get; set; }
     }
 }
