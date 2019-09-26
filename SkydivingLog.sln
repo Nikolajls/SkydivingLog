@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkydivingLog.Models", "Skyd
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SkydivingLog.Database", "SkydivingLog.Database\SkydivingLog.Database.sqlproj", "{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkydivingLog.Infrastructure.Queries", "SkydivingLog.Infrastructure.Queries\SkydivingLog.Infrastructure.Queries.csproj", "{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkydivingLog.Presentation.Prototype", "SkydivingLog.Presentation.Prototype\SkydivingLog.Presentation.Prototype.csproj", "{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,14 @@ Global
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
