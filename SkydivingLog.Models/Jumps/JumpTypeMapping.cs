@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Jumps
+namespace SkydivingLog.Models.Jumps
 {
     [Table("[Jump].[JumpTypeMappings]")]
     public class JumpTypeMapping
