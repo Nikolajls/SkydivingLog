@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA [Gear]
+    AUTHORIZATION [dbo];

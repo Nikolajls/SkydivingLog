@@ -56,5 +56,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Security" />
+    <Folder Include="Dropzone" />
+    <Folder Include="Gear" />
+    <Folder Include="Person" />
+    <Folder Include="Jump" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\Dropzone.sql" />
+    <Build Include="Security\Gear.sql" />
+    <Build Include="Security\Jump.sql" />
+    <Build Include="Security\Person.sql" />
+    <Build Include="Dropzone\Dropzones.sql" />
+    <Build Include="Gear\Canopies.sql" />
+    <Build Include="Gear\Manufacturers.sql" />
+    <Build Include="Gear\ContainerModels.sql" />
+    <Build Include="Gear\CanopyModels.sql" />
+    <Build Include="Gear\Containers.sql" />
+    <Build Include="Person\Persons.sql" />
+    <Build Include="Jump\Jumps.sql" />
+    <Build Include="Jump\AdditionalJumpers.sql" />
+    <Build Include="Jump\JumpTypes.sql" />
+    <Build Include="Jump\JumpTypeMappings.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SqlSchemaCompare.scmp" />
   </ItemGroup>
 </Project>
