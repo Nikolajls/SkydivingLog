@@ -78,6 +78,8 @@
     <Build Include="Jump\AdditionalJumpers.sql" />
     <Build Include="Jump\JumpTypes.sql" />
     <Build Include="Jump\JumpTypeMappings.sql" />
+    <Build Include="Gear\CanopyType.sql" />
+    <Build Include="Gear\CanopyLevel.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlSchemaCompare.scmp" />
