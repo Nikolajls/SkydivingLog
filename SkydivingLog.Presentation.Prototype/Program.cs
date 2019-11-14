@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -8,9 +7,8 @@ using Autofac;
 using Autofac.Features.Variance;
 using MediatR;
 using SkydivingLog.Infrastructure.Queries;
-using SkydivingLog.Infrastructure.Queries.Persons;
 
-namespace Prototype
+namespace SkydivingLog.Presentation.Prototype
 {
     class Program
     {
@@ -18,8 +16,28 @@ namespace Prototype
         {
             var container = SetupAutofac();
             var mediatr = container.Resolve<IMediator>();
-            var result = await mediatr.Send(new GetPersonNameById.Query() { Id = 1 });
-            Console.WriteLine($"Person with Id 1 names({result?.Name})");
+
+            var smallestJumper = new FindSmallestSizeCanopy.Query
+            {
+                JumpNumbers = 40,
+                NakedWeightKg = 85
+            };
+            var smallestSqft = await mediatr.Send(smallestJumper);
+            Console.WriteLine($"Jumper with #{smallestJumper.JumpNumbers} and exit weight {smallestJumper.TotalWeight} minimum sqft canopy is {smallestSqft}");
+
+            var request = new CanPersonJumpCanopy.Query
+            {
+                JumpNumbers = smallestJumper.JumpNumbers,
+                NakedWeightKg = smallestJumper.NakedWeightKg,
+                LeadWeightKg = smallestJumper.LeadWeightKg,
+                CanopySqft = smallestSqft - 10
+            };
+            var mayJumper = await mediatr.Send(request);
+
+            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} and exit weight {request.TotalWeight} jump a {request.CanopySqft}? ANSWER IS {mayJumper}");
+
+
+
             Console.WriteLine("Idling...");
             Console.ReadLine();
         }
