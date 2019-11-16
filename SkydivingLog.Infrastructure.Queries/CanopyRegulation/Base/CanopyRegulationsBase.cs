@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SkydivingLog.Infrastructure.Queries.CanopyRegulations
+﻿namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base
 {
-    public abstract class CanopyRegulationsBase
+    public abstract class CanopyRegulationsBase : ICanopyRegulations
     {
         public abstract bool CanJump(int jumpCount, double exitWeight, double squareFeet, bool isElliptical);
         public abstract double SmallestParachute(int jumpCount, double exitWeight, double squareFeet, bool isElliptical, double minimum = 37.0);

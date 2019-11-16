@@ -1,4 +1,4 @@
-﻿using SkydivingLog.Infrastructure.Queries.CanopyRegulations;
+﻿using SkydivingLog.Infrastructure.Queries.CanopyRegulation;
 using Xunit;
 
 namespace SkydivingLog.Tests

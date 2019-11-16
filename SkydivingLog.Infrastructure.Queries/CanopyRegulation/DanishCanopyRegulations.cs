@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
 
-namespace SkydivingLog.Infrastructure.Queries.CanopyRegulations
+namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation
 {
     public class DanishCanopyRegulations : CanopyRegulationsBase
     {

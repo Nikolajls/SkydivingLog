@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using SkydivingLog.Infrastructure.Queries.CanopyRegulations;
+using SkydivingLog.Infrastructure.Queries.CanopyRegulation;
+using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
 
 namespace SkydivingLog.Infrastructure.Queries
 {
@@ -41,9 +42,9 @@ namespace SkydivingLog.Infrastructure.Queries
 
         public class QueryHandler : IRequestHandler<Query, bool>
         {
-            private readonly DanishCanopyRegulations _regulations;
+            private readonly ICanopyRegulations _regulations;
 
-            public QueryHandler(DanishCanopyRegulations regulations)
+            public QueryHandler(ICanopyRegulations regulations)
             {
                 _regulations = regulations;
             }

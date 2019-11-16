@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SkydivingLog.Models.Gears;
-using System.Collections.Generic;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using SkydivingLog.Infrastructure.Queries.Gear.Canopies;
+using System.Threading.Tasks;
 
 namespace SkydivingLog.Presentation.API.Controllers
 {
@@ -8,14 +9,18 @@ namespace SkydivingLog.Presentation.API.Controllers
     [Route("[controller]")]
     public class CanopyController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IMediator _mediator;
+
+        public CanopyController(IMediator mediator)
         {
-            var data = new List<Canopy>()
-            {
-                new Canopy() {SerialNumber = "12345"}
-            };
-            return Ok(data);
+            _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var allCanopies = await _mediator.Send(new FindAllCanopies.Query());
+            return Ok(allCanopies);
         }
     }
 }
