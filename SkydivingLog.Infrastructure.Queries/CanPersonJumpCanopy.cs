@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using SkydivingLog.Infrastructure.Queries.CanopyRegulations;
 
 namespace SkydivingLog.Infrastructure.Queries
 {
@@ -40,30 +41,20 @@ namespace SkydivingLog.Infrastructure.Queries
 
         public class QueryHandler : IRequestHandler<Query, bool>
         {
+            private readonly DanishCanopyRegulations _regulations;
+
+            public QueryHandler(DanishCanopyRegulations regulations)
+            {
+                _regulations = regulations;
+            }
+
             public Task<bool> Handle(Query request, CancellationToken cancellationToken)
             {
-                //A person with 400 jumps may jump any "normal type canoyp"
-                if (request.JumpNumbers >= 400)
-                    return Task.FromResult(true);
-
-                //A jumper with below 400 jumps may not jump smaller than 120 sqft
-                if (request.CanopySqft < 120)
-                    return Task.FromResult(false);
-
-                var sqftLoad = CalculateSquareFeetLoad(request.TotalWeight, request.CanopySqft);
-
-                //A jumper with less than 200 jumps or if the canopy is elliptical may not jump a canopy that's loaded with more than 500 grams per sqft
-                if (request.JumpNumbers < 200 || request.Elliptical)
-                    return Task.FromResult(sqftLoad <= 500);
-
-                //Implicitely here the jumper has more than 200 and is not trying an elliptical thus may load with a maximum of 650 grams per sqft
-                return Task.FromResult(sqftLoad <= 650);
+                var result = _regulations.CanJump(request.JumpNumbers, request.TotalWeight, request.CanopySqft,
+                    request.Elliptical);
+                return Task.FromResult(result);
             }
 
-            private double CalculateSquareFeetLoad(double totalWeight, double CanopySqft)
-            {
-                return (totalWeight * 1000) / CanopySqft;
-            }
         }
     }
 }

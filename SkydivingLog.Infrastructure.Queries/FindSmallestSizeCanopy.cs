@@ -17,12 +17,7 @@ namespace SkydivingLog.Infrastructure.Queries
 
         public class QueryHandler : IRequestHandler<Query, double>
         {
-            private readonly double _gearFactor;
-
-            public QueryHandler()
-            {
-                _gearFactor = 10.0;
-            }
+         
 
             public Task<double> Handle(Query request, CancellationToken cancellationToken)
             {
