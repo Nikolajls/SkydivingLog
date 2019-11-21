@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkydivingLog.Models", "Skyd
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SkydivingLog.Database", "SkydivingLog.Database\SkydivingLog.Database.sqlproj", "{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkydivingLog.Infrastructure.Queries", "SkydivingLog.Infrastructure.Queries\SkydivingLog.Infrastructure.Queries.csproj", "{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkydivingLog.Presentation.Prototype", "SkydivingLog.Presentation.Prototype\SkydivingLog.Presentation.Prototype.csproj", "{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkydivingLog.Tests", "SkydivingLog.Tests\SkydivingLog.Tests.csproj", "{0EC00029-B08B-48D4-8538-596A51301A33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkydivingLog.Presentation.API", "SkydivingLog.Presentation.API\SkydivingLog.Presentation.API.csproj", "{A5BB765C-FD1A-457F-AD78-BD72EB1895A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +31,22 @@ Global
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BFC6146-9EA6-4596-AF9D-58515BEAE9BC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B38FD11-6276-47FD-AEE4-5056C4BC8FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9C0BF5-3082-4245-91FA-F0636C5F5A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC00029-B08B-48D4-8538-596A51301A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC00029-B08B-48D4-8538-596A51301A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC00029-B08B-48D4-8538-596A51301A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC00029-B08B-48D4-8538-596A51301A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5BB765C-FD1A-457F-AD78-BD72EB1895A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5BB765C-FD1A-457F-AD78-BD72EB1895A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5BB765C-FD1A-457F-AD78-BD72EB1895A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BB765C-FD1A-457F-AD78-BD72EB1895A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
