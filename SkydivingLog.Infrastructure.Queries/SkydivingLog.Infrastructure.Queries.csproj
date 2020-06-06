@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.4" />
-    <PackageReference Include="Mediatr" Version="7.0.0" />
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Mediatr" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkydivingLog.Models\SkydivingLog.Models.csproj" />
   </ItemGroup>
 
 </Project>

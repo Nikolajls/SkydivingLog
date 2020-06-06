@@ -1,15 +1,17 @@
-﻿using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using SkydivingLog.Infrastructure.Queries.CanopyRegulation;
+using MediatR;
+using SkydivingLog.Infrastructure.Queries.Assocations;
 using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
+using SkydivingLog.Models.Associations;
 
-namespace SkydivingLog.Infrastructure.Queries
+namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
 {
     public class CanPersonJumpCanopy
     {
         public class Query : IRequest<bool>
         {
+            public Association JumpingAssociation { get; set; }
             /// <summary>
             /// The naked weight of the jumper in kilograms
             /// </summary>
@@ -42,17 +44,17 @@ namespace SkydivingLog.Infrastructure.Queries
 
         public class QueryHandler : IRequestHandler<Query, bool>
         {
-            private readonly ICanopyRegulations _regulations;
-
-            public QueryHandler(ICanopyRegulations regulations)
+            private readonly IAssocationService AssocationService;
+            public QueryHandler(IAssocationService assocationService)
             {
-                _regulations = regulations;
+                AssocationService = assocationService;
             }
 
             public Task<bool> Handle(Query request, CancellationToken cancellationToken)
             {
-                var result = _regulations.CanJump(request.JumpNumbers, request.TotalWeight, request.CanopySqft,
-                    request.Elliptical);
+                var regulations = AssocationService.GetCanopyRegulations(request.JumpingAssociation);
+                var result = regulations.CanJump(request.JumpNumbers, request.TotalWeight, request.CanopySqft, request.Elliptical);
+
                 return Task.FromResult(result);
             }
 
