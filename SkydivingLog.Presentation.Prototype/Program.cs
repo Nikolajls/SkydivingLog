@@ -65,10 +65,10 @@ namespace SkydivingLog.Presentation.Prototype
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<AssocationService>().As<IAssocationService>().SingleInstance();
-            
-            
-            builder.RegisterType<DanishCanopyRegulations>().Keyed<ICanopyRegulations>(Association.DFU);
-            builder.RegisterType<UspaCanopyRegulations>().Keyed<ICanopyRegulations>(Association.USPA);
+
+
+            builder.RegisterType<DanishCanopyRegulations>().Keyed<ICanopyRegulations>(Association.DFU).SingleInstance();
+            builder.RegisterType<UspaCanopyRegulations>().Keyed<ICanopyRegulations>(Association.USPA).SingleInstance();
 
             builder.AddMediatR(typeof(AssemblyAnchor).Assembly);
 

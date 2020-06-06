@@ -3,7 +3,7 @@ using SkydivingLog.Models.Associations;
 
 namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation
 {
-    public class UspaCanopyRegulations : CanopyRegulations<UspaAssocation>
+    public class UspaCanopyRegulations : CanopyRegulations
     {
         //Land of the free rules!
         public override bool CanJump(int jumpCount, double exitWeight, double squareFeet, bool isElliptical)
