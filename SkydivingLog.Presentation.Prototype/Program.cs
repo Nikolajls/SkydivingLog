@@ -8,7 +8,7 @@ using Autofac.Features.Variance;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using SkydivingLog.Infrastructure.Queries;
-using SkydivingLog.Infrastructure.Queries.Assocations;
+using SkydivingLog.Infrastructure.Queries.Associations;
 using SkydivingLog.Infrastructure.Queries.CanopyRegulation;
 using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
 using SkydivingLog.Infrastructure.Queries.Gear.Canopies;
@@ -37,24 +37,11 @@ namespace SkydivingLog.Presentation.Prototype
                 JumpNumbers = smallestJumper.JumpNumbers,
                 NakedWeightKg = smallestJumper.NakedWeightKg,
                 LeadWeightKg = smallestJumper.LeadWeightKg,
-                CanopySqft = smallestSqft
+                CanopySqft = smallestSqft-10
             };
             var mayJumper = await mediatr.Send(request);
 
-            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} and exit weight {request.TotalWeight} jump a {request.CanopySqft}? ANSWER IS {mayJumper}");
-
-
-            var request1 = new CanPersonJumpCanopy.Query
-            {
-                JumpingAssociation = Association.DFU,
-                JumpNumbers = smallestJumper.JumpNumbers,
-                NakedWeightKg = smallestJumper.NakedWeightKg,
-                LeadWeightKg = smallestJumper.LeadWeightKg,
-                CanopySqft = smallestSqft
-            };
-            var mayJumpe1r = await mediatr.Send(request);
-
-            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} and exit weight {request.TotalWeight} jump a {request.CanopySqft}? ANSWER IS {mayJumpe1r}");
+            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} jumps and exit weight {request.TotalWeight} jump a {request.CanopySqft} canopy? {(mayJumper ? "Yes" : "No ")}");
 
 
             Console.WriteLine("Idling...");
@@ -64,7 +51,7 @@ namespace SkydivingLog.Presentation.Prototype
         private static IContainer SetupAutofac()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<AssocationService>().As<IAssocationService>().SingleInstance();
+            builder.RegisterType<AssociationService>().As<IAssociationService>().SingleInstance();
 
 
             builder.RegisterType<DanishCanopyRegulations>().Keyed<ICanopyRegulations>(Association.DFU).SingleInstance();

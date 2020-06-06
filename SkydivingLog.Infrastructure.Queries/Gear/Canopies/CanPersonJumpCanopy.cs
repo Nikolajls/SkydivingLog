@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using SkydivingLog.Infrastructure.Queries.Assocations;
+using SkydivingLog.Infrastructure.Queries.Associations;
 using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
 using SkydivingLog.Models.Associations;
 
@@ -44,15 +44,15 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
 
         public class QueryHandler : IRequestHandler<Query, bool>
         {
-            private readonly IAssocationService AssocationService;
-            public QueryHandler(IAssocationService assocationService)
+            private readonly IAssociationService _associationService;
+            public QueryHandler(IAssociationService associationService)
             {
-                AssocationService = assocationService;
+                _associationService = associationService;
             }
 
             public Task<bool> Handle(Query request, CancellationToken cancellationToken)
             {
-                var regulations = AssocationService.GetCanopyRegulations(request.JumpingAssociation);
+                var regulations = _associationService.GetCanopyRegulations(request.JumpingAssociation);
                 var result = regulations.CanJump(request.JumpNumbers, request.TotalWeight, request.CanopySqft, request.Elliptical);
 
                 return Task.FromResult(result);
