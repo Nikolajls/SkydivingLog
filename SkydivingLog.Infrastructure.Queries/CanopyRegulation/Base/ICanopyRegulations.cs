@@ -3,6 +3,6 @@
     public interface ICanopyRegulations
     {
         bool CanJump(int jumpCount, double exitWeight, double squareFeet, bool isElliptical);
-        double SmallestParachute(int jumpCount, double exitWeight, double squareFeet, bool isElliptical, double minimum = 37.0);
+        double SmallestParachute(int jumpCount, double exitWeight,bool isElliptical);
     }
 }

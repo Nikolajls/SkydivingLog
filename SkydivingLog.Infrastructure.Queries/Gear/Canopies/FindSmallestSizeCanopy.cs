@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using SkydivingLog.Infrastructure.Queries.Associations;
+using SkydivingLog.Models.Associations;
 
 namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
 {
@@ -8,6 +10,7 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
     {
         public class Query : IRequest<double>
         {
+            public Association JumpingAssociation { get; set; }
             public double NakedWeightKg { get; set; }
             public double LeadWeightKg { get; set; }
             public int JumpNumbers { get; set; }
@@ -17,14 +20,18 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
 
         public class QueryHandler : IRequestHandler<Query, double>
         {
-         
+
+            private readonly IAssociationService _associationService;
+            public QueryHandler(IAssociationService associationService)
+            {
+                _associationService = associationService;
+            }
+
             public Task<double> Handle(Query request, CancellationToken cancellationToken)
             {
-                var result = 37.0;
-                if (request.JumpNumbers >= 400)
-                    return Task.FromResult(result);
-                var maxLoadPerSquare = request.JumpNumbers < 200 || request.Elliptical ? 0.5 : 0.650;
-                result = request.TotalWeight / maxLoadPerSquare;
+                var regulations = _associationService.GetCanopyRegulations(request.JumpingAssociation);
+                var result = regulations.SmallestParachute(request.JumpNumbers, request.TotalWeight, request.Elliptical);
+
                 return Task.FromResult(result);
             }
         }

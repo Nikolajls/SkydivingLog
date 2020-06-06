@@ -24,10 +24,10 @@ namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation
             return sqftLoad <= 650;
         }
 
-        public override double SmallestParachute(int jumpCount, double exitWeight, double squareFeet, bool isElliptical, double minimum = 37)
+        public override double SmallestParachute(int jumpCount, double exitWeight, bool isElliptical)
         {
             if (jumpCount >= 400)
-                return minimum;
+                return 37.0d;
             var maxLoadPerSquare = jumpCount < 200 || isElliptical ? 0.5 : 0.650;
             var result = exitWeight / maxLoadPerSquare;
             return result;

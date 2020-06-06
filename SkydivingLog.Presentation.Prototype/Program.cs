@@ -25,15 +25,16 @@ namespace SkydivingLog.Presentation.Prototype
 
             var smallestJumper = new FindSmallestSizeCanopy.Query
             {
+                JumpingAssociation = Association.DFU,
                 JumpNumbers = 40,
                 NakedWeightKg = 85
             };
             var smallestSqft = await mediatr.Send(smallestJumper);
-            Console.WriteLine($"Jumper with #{smallestJumper.JumpNumbers} and exit weight {smallestJumper.TotalWeight} minimum sqft canopy is {smallestSqft}");
+            Console.WriteLine($"Jumper with #{smallestJumper.JumpNumbers} and exit weight {smallestJumper.TotalWeight} minimum sqft canopy is {smallestSqft} in {smallestJumper.JumpingAssociation}");
 
             var request = new CanPersonJumpCanopy.Query
             {
-                JumpingAssociation = Association.DFU,
+                JumpingAssociation = Association.USPA,
                 JumpNumbers = smallestJumper.JumpNumbers,
                 NakedWeightKg = smallestJumper.NakedWeightKg,
                 LeadWeightKg = smallestJumper.LeadWeightKg,
@@ -41,7 +42,7 @@ namespace SkydivingLog.Presentation.Prototype
             };
             var mayJumper = await mediatr.Send(request);
 
-            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} jumps and exit weight {request.TotalWeight} jump a {request.CanopySqft} canopy? {(mayJumper ? "Yes" : "No ")}");
+            Console.WriteLine($"Can a jumper with #{request.JumpNumbers} jumps and exit weight {request.TotalWeight} jump a {request.CanopySqft} canopy? {(mayJumper ? "Yes" : "No ")} in {request.JumpingAssociation}");
 
 
             Console.WriteLine("Idling...");

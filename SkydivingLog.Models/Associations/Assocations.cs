@@ -11,6 +11,7 @@ namespace SkydivingLog.Models.Associations
         BPA, //Britain - British Parachutistasddasda
         FFP //France - Fédération Francaose de parachutisme
     }
+
     public abstract class AssociationBase
     {
         public abstract Association Association { get;  }  

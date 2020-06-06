@@ -10,9 +10,9 @@ namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation
             return true;
         }
 
-        public override double SmallestParachute(int jumpCount, double exitWeight, double squareFeet, bool isElliptical, double minimum = 37)
+        public override double SmallestParachute(int jumpCount, double exitWeight, bool isElliptical)
         {
-            return minimum;
+            return 1;
         }
     }
 }
