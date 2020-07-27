@@ -28,6 +28,7 @@ namespace SkydivingLog.Presentation.Prototype
             //A
             //B
             //C
+            //D
             var smallestJumper = new FindSmallestSizeCanopy.Query
             {
                 JumpingAssociation = Association.DFU,
