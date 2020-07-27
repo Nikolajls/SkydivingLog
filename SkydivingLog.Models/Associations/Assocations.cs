@@ -12,33 +12,31 @@ namespace SkydivingLog.Models.Associations
         FFP //France - Fédération Francaose de parachutisme
     }
 
-    public abstract class AssociationBase
+    public interface IAssociation
     {
-        public abstract Association Association { get;  }  
+        Association Association { get; }
     }
 
-    public class UspaAssocation : AssociationBase
+    public class UspaAssocation : IAssociation
     {
-        public override Association Association => Association.BPA;
-
-    }
-
-    public class DFUAssociation : AssociationBase
-    {
-        public override Association Association => Association.DFU;
+        public Association Association => Association.USPA;
 
     }
 
-    public class BPAAssociation : AssociationBase
+    public class DFUAssociation : IAssociation
     {
-        public override Association Association => Association.BPA;
+        public Association Association => Association.DFU;
+    }
+
+    public class BPAAssociation : IAssociation
+    {
+        public Association Association => Association.BPA;
 
     }
 
-    public class FFPAssociation : AssociationBase
+    public class FFPAssociation : IAssociation
     {
-        public override Association Association => Association.FFP;
-
-
+        public Association Association => Association.FFP;
     }
+
 }

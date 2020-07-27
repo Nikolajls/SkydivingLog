@@ -1,4 +1,6 @@
-﻿namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base
+﻿using SkydivingLog.Models.Associations;
+
+namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base
 {
     public interface ICanopyRegulations
     {

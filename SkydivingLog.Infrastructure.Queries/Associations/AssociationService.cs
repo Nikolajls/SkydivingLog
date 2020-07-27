@@ -12,6 +12,7 @@ namespace SkydivingLog.Infrastructure.Queries.Associations
         {
             _regulations = regulations;
         }
+
         public ICanopyRegulations GetCanopyRegulations(Association jumpingAssociation)
         {
             return _regulations[jumpingAssociation];
