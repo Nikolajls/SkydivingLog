@@ -1,8 +1,10 @@
 ﻿using SkydivingLog.Infrastructure.Queries.CanopyRegulation.Base;
+using SkydivingLog.Models.Associations;
 
 namespace SkydivingLog.Infrastructure.Queries.CanopyRegulation
 {
-    public class DanishCanopyRegulations : CanopyRegulations
+
+    public class DanishCanopyRegulations : CanopyRegulations<DFUAssociation> 
     {
         public override bool CanJump(int jumpCount, double exitWeight, double squareFeet, bool isElliptical)
         {

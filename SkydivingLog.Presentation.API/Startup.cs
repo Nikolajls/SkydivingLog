@@ -26,7 +26,7 @@ namespace SkydivingLog.Presentation.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDbConnection>(ctx => new SqlConnection("Server=.;Integrated Security=true; Database=SkydivingLog; MultipleActiveResultSets=True;"));
-            services.AddSingleton<ICanopyRegulations>(ctx => new DanishCanopyRegulations());
+            //services.AddSingleton<ICanopyRegulations>(ctx => new DanishCanopyRegulations());
             services.AddControllers();
             services.AddMediatR(typeof(AssemblyAnchor).Assembly);
         }

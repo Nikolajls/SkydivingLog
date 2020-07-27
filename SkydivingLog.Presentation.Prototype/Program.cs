@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
@@ -22,6 +23,8 @@ namespace SkydivingLog.Presentation.Prototype
         {
             var container = SetupAutofac();
             var mediatr = container.Resolve<IMediator>();
+            //var a = container.ResolveNamed<ICanopyRegulations>(Association.DFU);
+            //var b = container.ResolveNamed<ICanopyRegulations>(Association.USPA);
 
             var smallestJumper = new FindSmallestSizeCanopy.Query
             {
@@ -38,7 +41,7 @@ namespace SkydivingLog.Presentation.Prototype
                 JumpNumbers = smallestJumper.JumpNumbers,
                 NakedWeightKg = smallestJumper.NakedWeightKg,
                 LeadWeightKg = smallestJumper.LeadWeightKg,
-                CanopySqft = smallestSqft-10
+                CanopySqft = smallestSqft - 10
             };
             var mayJumper = await mediatr.Send(request);
 
@@ -53,10 +56,22 @@ namespace SkydivingLog.Presentation.Prototype
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<AssociationService>().As<IAssociationService>().SingleInstance();
+        
 
-
-            builder.RegisterType<DanishCanopyRegulations>().Keyed<ICanopyRegulations>(Association.DFU).SingleInstance();
-            builder.RegisterType<UspaCanopyRegulations>().Keyed<ICanopyRegulations>(Association.USPA).SingleInstance();
+            var canopyRegulations = Assembly.GetAssembly(typeof(ICanopyRegulations))
+                .GetTypes()
+                .Where(type => typeof(ICanopyRegulations).IsAssignableFrom(type) && !type.IsAbstract)
+                .ToList();
+            foreach (var regulation in canopyRegulations)
+            {
+               
+                var name = regulation.Name;
+                var associationType = regulation.BaseType?.GenericTypeArguments.FirstOrDefault();
+                if (associationType == null) continue;
+                var associationInstance = (IAssociation)Activator.CreateInstance(associationType);
+                builder.RegisterType(regulation).Keyed<ICanopyRegulations>(associationInstance.Association).SingleInstance();
+                Console.WriteLine($"Registered {regulation.Name} as ICanopyRegulations with keyed {associationInstance.Association}");
+            }
 
             builder.AddMediatR(typeof(AssemblyAnchor).Assembly);
 
