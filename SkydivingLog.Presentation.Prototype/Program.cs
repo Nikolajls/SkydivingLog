@@ -26,7 +26,7 @@ namespace SkydivingLog.Presentation.Prototype
             //var a = container.ResolveNamed<ICanopyRegulations>(Association.DFU);
             //var b = container.ResolveNamed<ICanopyRegulations>(Association.USPA);
             //A
-
+            //B
             var smallestJumper = new FindSmallestSizeCanopy.Query
             {
                 JumpingAssociation = Association.DFU,
