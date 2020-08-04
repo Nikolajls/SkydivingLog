@@ -1,5 +1,6 @@
 using System.Data;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MediatR;
@@ -33,7 +34,7 @@ namespace SkydivingLog.Presentation.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDbConnection>(ctx => new SqlConnection("Server=.;Integrated Security=true; Database=SkydivingLog; MultipleActiveResultSets=True;"));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddMediatR(typeof(AssemblyAnchor).Assembly);
 
         }
@@ -62,7 +63,6 @@ namespace SkydivingLog.Presentation.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
