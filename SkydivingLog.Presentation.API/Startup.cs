@@ -12,6 +12,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
 using SkydivingLog.Infrastructure.Queries;
 using SkydivingLog.Infrastructure.Queries.Associations;
 using SkydivingLog.Infrastructure.Queries.CanopyRegulation;
@@ -35,8 +36,10 @@ namespace SkydivingLog.Presentation.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddScoped<IDbConnection>(ctx => new SqlConnection("Server=.;Integrated Security=true; Database=SkydivingLog; MultipleActiveResultSets=True;"));
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(opts => 
+                opts.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddMediatR(typeof(AssemblyAnchor).Assembly);
 
         }

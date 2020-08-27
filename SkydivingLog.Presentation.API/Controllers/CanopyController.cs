@@ -15,7 +15,16 @@ namespace SkydivingLog.Presentation.API.Controllers
         {
             _mediator = mediator;
         }
-
+        [HttpGet]
+        [Route("{Id:int}")]
+        public async Task<IActionResult> Get(int Id)
+        {
+            var canopy = await _mediator.Send(new FindCanopyById.Query()
+            {
+                Id = Id
+            });
+            return Ok(canopy);
+        }
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
