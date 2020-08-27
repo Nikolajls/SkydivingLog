@@ -1,4 +1,6 @@
+using System;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Autofac;
@@ -47,7 +49,20 @@ namespace SkydivingLog.Presentation.API
         {
             builder.RegisterType<AssociationService>().As<IAssociationService>().SingleInstance();
             // Register your own things directly with Autofac, like:
-            builder.RegisterType<DanishCanopyRegulations>().As<ICanopyRegulations>().Keyed<ICanopyRegulations>(Association.DFU);
+
+            var canopyRegulations = Assembly.GetAssembly(typeof(ICanopyRegulations))
+                .GetTypes()
+                .Where(type => typeof(ICanopyRegulations).IsAssignableFrom(type) && !type.IsAbstract)
+                .ToList();
+            foreach (var regulation in canopyRegulations)
+            {
+
+                var name = regulation.Name;
+                var associationType = regulation.BaseType?.GenericTypeArguments.FirstOrDefault();
+                if (associationType == null) continue;
+                var associationInstance = (IAssociation)Activator.CreateInstance(associationType);
+                builder.RegisterType(regulation).Keyed<ICanopyRegulations>(associationInstance.Association).SingleInstance();
+                 }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

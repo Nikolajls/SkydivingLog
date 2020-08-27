@@ -11,7 +11,7 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
 {
     public class FindAllCanopies
     {
-        public class Query : IRequest<List<Result>>
+        public class Query : IRequest<IEnumerable<Result>>
         {
 
         }
@@ -24,7 +24,7 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
             public DateTime ManufacturedDate { get; set; }
         }
 
-        public class QueryHandler : IRequestHandler<Query, List<Result>>
+        public class QueryHandler : IRequestHandler<Query, IEnumerable<Result>>
         {
             private readonly IDbConnection _connection;
 
@@ -34,11 +34,10 @@ namespace SkydivingLog.Infrastructure.Queries.Gear.Canopies
                 _connection = connection;
             }
 
-            public async Task<List<Result>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Result>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var data = await _connection.QueryAsync<Result>("SELECT * FROM [Gear].[Canopies]");
-                var canopies = data.ToList();
-                return canopies;
+                return data;
             }
         }
     }

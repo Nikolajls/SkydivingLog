@@ -17,6 +17,7 @@ namespace SkydivingLog.Presentation.API.Controllers
         }
 
         [HttpGet]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var allCanopies = await _mediator.Send(new FindAllCanopies.Query());
