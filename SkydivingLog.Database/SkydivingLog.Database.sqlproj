@@ -61,6 +61,7 @@
     <Folder Include="Gear" />
     <Folder Include="Person" />
     <Folder Include="Jump" />
+    <Folder Include="Gear\Stored procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\Dropzone.sql" />
@@ -80,6 +81,7 @@
     <Build Include="Jump\JumpTypeMappings.sql" />
     <Build Include="Gear\CanopyType.sql" />
     <Build Include="Gear\CanopyLevel.sql" />
+    <Build Include="Gear\Stored procedures\FindCanopyById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlSchemaCompare.scmp" />

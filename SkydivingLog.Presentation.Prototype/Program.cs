@@ -23,12 +23,7 @@ namespace SkydivingLog.Presentation.Prototype
         {
             var container = SetupAutofac();
             var mediatr = container.Resolve<IMediator>();
-            //var a = container.ResolveNamed<ICanopyRegulations>(Association.DFU);
-            //var b = container.ResolveNamed<ICanopyRegulations>(Association.USPA);
-            //A
-            //B
-            //C
-            //D
+         
             var smallestJumper = new FindSmallestSizeCanopy.Query
             {
                 JumpingAssociation = Association.DFU,
@@ -36,7 +31,7 @@ namespace SkydivingLog.Presentation.Prototype
                 NakedWeightKg = 85
             };
             var smallestSqft = await mediatr.Send(smallestJumper);
-            Console.WriteLine($"Jumper with #{smallestJumper.JumpNumbers} and exit weight {smallestJumper.TotalWeight} minimum sqft canopy is {smallestSqft} in {smallestJumper.JumpingAssociation}");
+            Console.WriteLine($"Jumper with #{smallestJumper.JumpNumbers} and exit weight {smallestJumper.TotalWeight} minimum square canopy is {smallestSqft} in {smallestJumper.JumpingAssociation}");
 
             var request = new CanPersonJumpCanopy.Query
             {
@@ -73,7 +68,7 @@ namespace SkydivingLog.Presentation.Prototype
                 if (associationType == null) continue;
                 var associationInstance = (IAssociation)Activator.CreateInstance(associationType);
                 builder.RegisterType(regulation).Keyed<ICanopyRegulations>(associationInstance.Association).SingleInstance();
-                Console.WriteLine($"Registered {regulation.Name} as ICanopyRegulations with keyed {associationInstance.Association}");
+         //       Console.WriteLine($"Registered {regulation.Name} as ICanopyRegulations with keyed {associationInstance.Association}");
             }
 
             builder.AddMediatR(typeof(AssemblyAnchor).Assembly);
@@ -93,28 +88,5 @@ namespace SkydivingLog.Presentation.Prototype
             return container;
         }
 
-
-        //private static void RegisterMediator(ContainerBuilder builder)
-        //{
-        //    // Mediator itself
-        //    builder
-        //        .RegisterType<Mediator>()
-        //        .As<IMediator>()
-        //        .InstancePerLifetimeScope();
-
-        //    // Enables contravariant Resolve() for interfaces with single contravariant ("in") arg
-        //    builder
-        //        .RegisterSource(new ContravariantRegistrationSource());
-            
-        //    // Request handlers
-        //    builder.RegisterAssemblyTypes(typeof(AssemblyAnchor).GetTypeInfo().Assembly).AsImplementedInterfaces(); // via assembly scan
-
-        //    // request & notification handlers
-        //    builder.Register<ServiceFactory>(context =>
-        //    {
-        //        var c = context.Resolve<IComponentContext>();
-        //        return t => c.Resolve(t);
-        //    });
-        //}
     }
 }
